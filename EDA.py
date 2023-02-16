@@ -12,6 +12,7 @@ import seaborn as sns
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
 # from lightgbm import log
+pd.options.display.precision = 4
 
 class EDA:
 
@@ -226,7 +227,7 @@ class EDA:
                             stats.probplot(x=self.data[name[int(k/2)]], dist="norm", plot=axes[i, j], fit=True)
                             axes[i, j].set_title(f"probability plot for {name[int(k/2)]}")
                         else:
-                            stats.probplot(x=np.log10(self.data[name[int((k-1)/2)]].values), dist="norm", plot=axes[i, j], fit=True)
+                            stats.probplot(x=np.log1p(self.data[name[int((k-1)/2)]].values), dist="norm", plot=axes[i, j], fit=True)
                             axes[i, j].set_title(f"probability plot for logarithmic of {name[int((k-1)/2)]}")
                     else:
                         stats.probplot(x=self.data[name[k]], dist="norm", plot=axes[i, j], fit=True)
